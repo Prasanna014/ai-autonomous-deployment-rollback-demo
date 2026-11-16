@@ -75,15 +75,9 @@ def index():
 def health():
     """Health check endpoint."""
     logger.info("GET /health - Health check requested")
-    
-    response = {
-        "status": "UP",
-        "version": APP_VERSION,
-        "timestamp": datetime.utcnow().isoformat()
-    }
-    
-    logger.info(f"Health check successful - Version: {APP_VERSION}")
-    return jsonify(response), 200
+    return jsonify({
+        "status": "DOWN"
+    }), 503
 
 @app.errorhandler(404)
 def not_found(error):
