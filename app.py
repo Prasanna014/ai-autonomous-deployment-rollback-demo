@@ -75,33 +75,9 @@ def index():
 def health():
     """Health check endpoint."""
     logger.info("GET /health - Health check requested")
-    
-    # Example: Intentional failure scenarios for testing rollback
-    # Uncomment any of these to simulate different failure modes:
-    
-    # 1. INVALID IMPORT FAILURE (uncomment to break):
-    # from non_existent_module import something  # This will cause startup failure
-    
-    # 2. STARTUP EXCEPTION (uncomment to break):
-    # raise RuntimeError("Intentional startup failure for rollback testing")
-    
-    # 3. HEALTH CHECK FAILURE (uncomment to break):
-    # return jsonify({"status": "DOWN", "error": "Intentional health check failure"}), 503
-    
-    # 4. MISSING REQUIRED FILE (uncomment to break):
-    # required_file = Path("/required/config/missing.conf")
-    # if not required_file.exists():
-    #     logger.error("Required configuration file missing")
-    #     return jsonify({"status": "DOWN", "error": "Missing configuration"}), 500
-    
-    response = {
-        "status": "UP",
-        "version": APP_VERSION,
-        "timestamp": datetime.utcnow().isoformat()
-    }
-    
-    logger.info(f"Health check successful - Version: {APP_VERSION}")
-    return jsonify(response), 200
+    return jsonify({
+        "status": "DOWN"
+    }), 503
 
 @app.errorhandler(404)
 def not_found(error):
