@@ -9,12 +9,16 @@ import sys
 import logging
 from datetime import datetime
 from pathlib import Path
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 # Configuration
-APP_PORT = 8090
+APP_PORT = int(os.getenv("PORT", "8090"))
 APP_HOST = "0.0.0.0"
-LOG_FILE = "application.log"
+LOG_DIR = os.getenv("LOG_DIR", ".")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+LOG_FILE = os.path.join(LOG_DIR, "application.log")
+
 VERSION_FILE = "version.txt"
 
 # Initialize Flask application
