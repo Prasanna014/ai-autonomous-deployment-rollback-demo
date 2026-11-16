@@ -124,3 +124,10 @@ if __name__ == "__main__":
     except Exception as e:
         logger.critical(f"Application startup failed: {str(e)}", exc_info=True)
         sys.exit(1)
+
+
+ # Example: Add custom startup validation
+    # Uncomment to simulate startup failure:
+    # if some_condition:
+    #     logger.critical("Startup validation failed!")
+    #     raise RuntimeError("Application startup validation failed")
