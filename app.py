@@ -12,7 +12,7 @@ from pathlib import Path
 from flask import Flask, jsonify
 
 # Configuration
-APP_PORT = 8080
+APP_PORT = 8090
 APP_HOST = "0.0.0.0"
 LOG_FILE = "application.log"
 VERSION_FILE = "version.txt"
