@@ -81,7 +81,7 @@ def health():
         "timestamp": datetime.utcnow().isoformat()
     }
 
-    # Intentionally failing to trigger rollback to the previous healthy version  healthy version  healthy version
+    # Intentionally failing to trigger rollback to the previous healthy version n
     logger.error(f"Health check failed - Version: {APP_VERSION}")
     return jsonify(response), 503
 
