@@ -75,9 +75,15 @@ def index():
 def health():
     """Health check endpoint."""
     logger.info("GET /health - Health check requested")
-    return jsonify({
-        "status": "DOWN"
-    }), 503
+    response = {
+        "status": "DOWN",
+        "version": APP_VERSION,
+        "timestamp": datetime.utcnow().isoformat()
+    }
+
+    # Intentionally failing to trigger rollback to the previous healthy version
+    logger.error(f"Health check failed - Version: {APP_VERSION}")
+    return jsonify(response), 503
 
 @app.errorhandler(404)
 def not_found(error):
